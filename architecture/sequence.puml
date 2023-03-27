@@ -1,0 +1,12 @@
+@startuml
+
+actor User
+participant "User class" as A
+participant "Meeting class" as B
+
+User -> A: createMeeting()
+activate A
+
+A -> B: addMeeting()
+
+@enduml

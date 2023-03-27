@@ -1,0 +1,29 @@
+@startuml
+
+left to right direction
+
+actor "Creator" as creator
+actor "User" as user
+
+package "Meeting" {
+  usecase "Create Meeting" as US1
+  usecase "Join Meeting" as US2
+  usecase "Leave Meeting" as US3
+  usecase "Delete Meeting" as US4
+  usecase "Edit Meeting" as US5
+  usecase "Find Meeting" as US6
+}
+
+creator --> US1
+creator --> US2
+creator --> US3
+creator --> US4
+creator --> US5
+creator --> US6
+
+user --> US2
+user --> US3
+user --> US6
+
+
+@enduml

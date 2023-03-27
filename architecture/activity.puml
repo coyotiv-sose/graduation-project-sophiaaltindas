@@ -1,0 +1,14 @@
+@startuml
+
+start
+:Log in;
+if (Do you want to create an Event?) then (yes)
+:Create Event;
+else (no)
+:Search  Event;
+:Join Event;
+endif
+
+stop
+
+@enduml

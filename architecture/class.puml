@@ -1,6 +1,32 @@
-@startuml Person 
-class Person {
+@startuml Person
+class User {
   name: string
-  age: number
+  photo: [Photo]
+  meetings: list
+
+  constructor(name: string, photo: [Photo], meetings: list)
+  createMeeting(name: string, date: Date): Meeting
+  joinMeeting(meeting: Meeting): void
+  leaveMeeting(meeting: Meeting): void
+  deleteMeeting(meeting: Meeting): void
+  changeMeetingName(meeting: Meeting, name: string): void
+  changeMeetingDate(meeting: Meeting, date: Date): void
+  changeMeetingLocation(meeting: Meeting, location: string): void
+  changeMeetingDescription(meeting: Meeting, description: string): void
+}
+
+class Meeting{
+  name: string
+  date: Date
+  location: string
+  description: string
+  attendees: list
+  createdBy: User
+
+  constructor(name: string, date: Date, location: string, description: string, attendees: list)
+  addAttendee(user: User): void
+  removeAttendee(user: User): void
+  expiredMeeting(): boolean
+
 }
 @enduml

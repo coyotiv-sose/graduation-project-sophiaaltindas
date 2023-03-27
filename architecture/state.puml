@@ -1,0 +1,23 @@
+@startuml
+
+state "Search Event" as State1
+state "Create Event" as State2
+state "Join Event" as State3
+state "Created Event" as State4
+
+[*] -> State1 : Log In
+State1 --> State2: Not Found
+State1 --> State3: Found
+State3 --> [*]: Log Out
+State2 --> State4: Created
+State4 --> [*]: Log Out
+
+state "Created Event" as State4 {
+    Change: Name, Date, Time, Location, Description
+    'Change --> State5 : update information
+}
+
+State4 --> State4 : update information
+
+
+@enduml
