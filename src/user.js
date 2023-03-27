@@ -2,6 +2,7 @@ const Meeting = require('./meeting')
 
 class User {
   meetings = []
+  profilePictureUrl = null
 
   constructor(name) {
     this.name = name
@@ -29,6 +30,38 @@ class User {
     if (this === meeting.createdBy) {
       this.meetings = this.meetings.filter(e => e !== meeting)
     }
+  }
+
+  changeMeetingName(meeting, newName) {
+    if (this === meeting.createdBy) {
+      meeting.setName(newName)
+    }
+  }
+
+  changeMeetingLocation(meeting, newLocation) {
+    if (this === meeting.createdBy) {
+      meeting.setLocation(newLocation)
+    }
+  }
+
+  changeMeetingDate(meeting, newDate) {
+    if (this === meeting.createdBy) {
+      meeting.setDate(newDate)
+    }
+  }
+
+  changeMeetingDescription(meeting, newDescription) {
+    if (this === meeting.createdBy) {
+      meeting.setDescription(newDescription)
+    }
+  }
+
+  setProfilePictureUrl(url) {
+    this.profilePictureUrl = url
+  }
+
+  getProfilePictureUrl() {
+    return this.profilePictureUrl
   }
 }
 

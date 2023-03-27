@@ -1,4 +1,5 @@
 const User = require('./user')
+const Meeting = require('./meeting')
 
 console.log("LET'SGO is a social network for people who love to travel and attend events.")
 
@@ -21,14 +22,15 @@ console.log("LET'SGO is a social network for people who love to travel and atten
 
 const sophia = new User('Sophia')
 const john = new User('John')
+const mary = new User('Mary')
 
 const sophiasMeeting = sophia.createMeeting("Sophia's Meeting", 'New York', '2023-01-01')
 const johnsMeeting = john.createMeeting("John's Meeting", 'Barcelona', '2023-01-01')
 
-john.joinMeeting(sophiasMeeting)
+//john.joinMeeting(sophiasMeeting)
 sophia.joinMeeting(johnsMeeting)
 
-// const sophiasMeeting = new Event(sophia, "Sophia's Event", 'New York', '2023-01-01')
+//const sophiasMeeting = new Event(sophia, "Sophia's Event", 'New York', '2023-01-01')
 // const johnsMeeting = new Event(john, "John's Event", 'Barcelona', '2023-01-01')
 
 // Test
@@ -44,3 +46,6 @@ console.log(`Sophia's event has Sophia as the first attendee: ${sophiasMeeting.a
 console.log(sophia)
 console.log(john)
 console.log(`Sophia has two meetings : ${sophia.meetings.length === 2}`)
+
+sophia.changeMeetingName(sophiasMeeting, 'Halloween Party')
+console.log(`Sophia changed the Meeting's name to ${sophiasMeeting.getName()}`)
