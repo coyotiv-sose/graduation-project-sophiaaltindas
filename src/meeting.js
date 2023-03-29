@@ -43,6 +43,7 @@ class Meeting {
   setDate(date) {
     this.date = date
   }
+
   addAttendee(user) {
     this.attendees.push(user)
   }

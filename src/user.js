@@ -63,6 +63,15 @@ class User {
   getProfilePictureUrl() {
     return this.profilePictureUrl
   }
+
+  static create({ name }) {
+    const newUser = new User(name)
+
+    User.list.push(newUser)
+    return newUser
+  }
+
+  static list = []
 }
 
 module.exports = User
