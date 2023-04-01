@@ -21,3 +21,22 @@ a {
   width: 200px;
   text-align: center;
 }
+
+.find {
+  font-weight: normal;
+  border: 5px solid rgb(131, 128, 128);
+  border-radius: 5px;
+  width: 120px;
+  height: 90px;
+  line-height: 60px;
+  padding: 15px;
+  text-align: center;
+}
+
+.find-findevent {
+  color: #158466;
+  margin-right: 50px;
+}
+.find-finduser {
+  color: #1e6d7b;
+}

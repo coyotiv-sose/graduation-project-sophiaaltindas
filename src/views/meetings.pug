@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 List of LETSGO meetings
+  p Welcome to the LETSGO meeting list. Here you can see all the meetings that have been created for the LETSGO service.
+
+  h2 Meetings
+  ul#meetings
+    each meeting in meetings
+      li.meeting= meeting.name
