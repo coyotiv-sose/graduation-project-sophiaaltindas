@@ -3,9 +3,10 @@ const Meeting = require('../models/meeting')
 const User = require('../models/user')
 var router = express.Router()
 
-/* GET users listing. */
+/* GET meetings listing. */
 router.get('/', function (req, res, next) {
-  res.send(Meeting.list)
+  //res.send(Meeting.list)
+  res.render('meetings', { meetings: Meeting.list })
 })
 
 /* Create a new meeting */

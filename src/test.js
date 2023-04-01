@@ -2,7 +2,7 @@
 // const Meeting = require('./models/meeting')
 const axios = require('axios')
 
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://localhost:3001'
 
 console.log("LET'SGO is a social network for people who love to travel and attend events.")
 
@@ -39,6 +39,14 @@ async function main() {
     name: 'John',
   })
 
+  await axios.post('/users', {
+    name: 'Mary',
+  })
+
+  await axios.post('/users', {
+    name: 'Bob',
+  })
+
   await axios.post('/meetings', {
     user: 'Sophia',
     name: "Sophia's Meeting",
@@ -63,6 +71,9 @@ async function main() {
 
   const allUsers = await axios.get('/users')
   console.log('List of all users', allUsers.data)
+
+  const allMeetings = await axios.get('/meetings')
+  // console.log('List of all meetings', allMeetings.data)
 }
 
 main()

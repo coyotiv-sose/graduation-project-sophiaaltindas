@@ -4,9 +4,8 @@ var router = express.Router()
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  //if (req.query.view === 'json')
-  res.send(User.list.map(user => ({ name: user.name, meetings: user.meetings.map(meeting => meeting.getName()) })))
-  //res.render('users', { title: 'LETSGO', users: User.list })
+  //res.send(User.list.map(user => ({ name: user.name, meetings: user.meetings.map(meeting => meeting.getName()) })))
+  res.render('users', { title: 'LETSGO', users: User.list })
 })
 
 /* Create a new user. */
