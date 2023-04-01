@@ -59,6 +59,14 @@ class Meeting {
     }
     return false
   }
+
+  static create({ name, description, location, date, createdBy }) {
+    const meeting = new Meeting(name, description, location, date, createdBy)
+    Meeting.list.push(meeting)
+
+    return meeting
+  }
+  static list = []
 }
 
 module.exports = Meeting

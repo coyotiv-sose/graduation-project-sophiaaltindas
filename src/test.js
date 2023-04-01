@@ -1,6 +1,8 @@
-const User = require('./user')
-const Meeting = require('./meeting')
+// const User = require('./models/user')
+// const Meeting = require('./models/meeting')
 const axios = require('axios')
+
+axios.defaults.baseURL = 'http://localhost:3000'
 
 console.log("LET'SGO is a social network for people who love to travel and attend events.")
 
@@ -22,21 +24,44 @@ console.log("LET'SGO is a social network for people who love to travel and atten
 // I need to be able to let the user leave an event.
 
 //fetch users with axios
-axios.get('http://localhost:3000/users').then(response => {
-  console.log(response.data)
-})
+// axios.get('http://localhost:3000/users').then(response => {
+//   console.log(response.data)
+// })
 
 //create a user with axios
 async function main() {
-  const john = await axios.post('http://localhost:3000/users', {
+  await axios.post('/users', {
+    name: 'Sophia',
+    hacked: true,
+  })
+
+  await axios.post('/users', {
     name: 'John',
   })
-  const sophia = await axios.post('http://localhost:3000/users', {
+
+  await axios.post('/meetings', {
+    user: 'Sophia',
+    name: "Sophia's Meeting",
+    location: 'New York',
+    date: '2023-01-01',
+  })
+
+  await axios.post('/meetings', {
+    user: 'John',
+    name: "John's Meeting",
+    location: 'Barcelona',
+    date: '2023-01-01',
+  })
+
+  await axios.post("/meetings/Sophia's Meeting Meeting/attendees", {
+    name: 'John',
+  })
+
+  await axios.post("/meetings/John's Meeting Meeting/attendees", {
     name: 'Sophia',
   })
 
-  const allUsers = await axios.get('http://localhost:3000/users')
-
+  const allUsers = await axios.get('/users')
   console.log('List of all users', allUsers.data)
 }
 

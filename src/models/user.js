@@ -9,7 +9,7 @@ class User {
   }
 
   createMeeting(name, location, date) {
-    const meeting = new Meeting(name, location, date, this)
+    const meeting = Meeting.create({ name, location, date, createdBy: this })
 
     this.joinMeeting(meeting)
 

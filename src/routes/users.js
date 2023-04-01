@@ -1,19 +1,12 @@
 var express = require('express')
-const User = require('../user')
+const User = require('../models/user')
 var router = express.Router()
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.send([{ name: 'John' }, { name: 'Jane' }, { name: 'Jim' }])
-
-  return
-
-  res.render('users', {
-    user: {
-      name: 'John',
-    },
-    users: [{ name: 'John' }, { name: 'Jane' }, { name: 'Jim' }],
-  })
+  //if (req.query.view === 'json')
+  res.send(User.list.map(user => ({ name: user.name, meetings: user.meetings.map(meeting => meeting.getName()) })))
+  //res.render('users', { title: 'LETSGO', users: User.list })
 })
 
 /* Create a new user. */
