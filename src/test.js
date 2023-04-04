@@ -75,7 +75,9 @@ async function main() {
   // const allMeetings = await axios.get('/meetings')
 }
 
-main()
+main().catch(error => {
+  console.log(error.message ? error.message : error)
+})
 
 // const sophia = new User('Sophia')
 // const john = new User('John')
