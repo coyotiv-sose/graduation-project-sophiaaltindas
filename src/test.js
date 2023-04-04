@@ -47,12 +47,12 @@ async function main() {
     name: 'Bob',
   })
 
-  // await axios.post('/meetings', {
-  //   user: sophia.data._id,
-  //   name: "Sophia's Meeting",
-  //   location: 'New York',
-  //   date: '2023-01-01',
-  // })
+  await axios.post('/meetings', {
+    user: sophia.data._id,
+    name: "Sophia's Meeting",
+    location: 'New York',
+    date: '2023-01-01',
+  })
 
   // await axios.post('/meetings', {
   //   user: 'John',
@@ -75,7 +75,9 @@ async function main() {
   // const allMeetings = await axios.get('/meetings')
 }
 
-main()
+main().catch(error => {
+  console.log(error.message ? error.message : error)
+})
 
 // const sophia = new User('Sophia')
 // const john = new User('John')
