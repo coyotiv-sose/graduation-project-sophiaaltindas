@@ -7,4 +7,6 @@ block content
   h2 Meetings
   ul#meetings
     each meeting in meetings
-      li.meeting= meeting.name
+      li.meeting
+        h4= meeting.name
+        p #{meeting.location}
