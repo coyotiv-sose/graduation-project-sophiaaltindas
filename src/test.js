@@ -47,12 +47,12 @@ async function main() {
     name: 'Bob',
   })
 
-  // await axios.post('/meetings', {
-  //   user: sophia.data._id,
-  //   name: "Sophia's Meeting",
-  //   location: 'New York',
-  //   date: '2023-01-01',
-  // })
+  await axios.post('/meetings', {
+    user: sophia.data._id,
+    name: "Sophia's Meeting",
+    location: 'New York',
+    date: '2023-01-01',
+  })
 
   // await axios.post('/meetings', {
   //   user: 'John',
