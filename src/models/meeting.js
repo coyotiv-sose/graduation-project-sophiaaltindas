@@ -1,18 +1,28 @@
+const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
+
+const meetingSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  location: String,
+  date: String,
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: { maxDepth: 1 },
+  },
+  attendees: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      autopopulate: { maxDepth: 1 },
+    },
+  ],
+})
+
+meetingSchema.plugin(autopopulate)
+
 class Meeting {
-  //  comments = []
-  attendees = []
-  // photo = []
-
-  constructor(name, description, location, date, createdBy) {
-    this.name = name
-    this.description = description
-    this.location = location
-    this.date = date
-    this.createdBy = createdBy
-
-    // this.attendees = [creator]
-    // creator.meetings.push(this)
-  }
   getAttendees() {
     return this.attendees
   }
@@ -59,14 +69,8 @@ class Meeting {
     }
     return false
   }
-
-  static create({ name, description, location, date, createdBy }) {
-    const meeting = new Meeting(name, description, location, date, createdBy)
-    Meeting.list.push(meeting)
-
-    return meeting
-  }
-  static list = []
 }
 
-module.exports = Meeting
+meetingSchema.loadClass(Meeting)
+
+module.exports = mongoose.model('Meeting', meetingSchema)

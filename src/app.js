@@ -8,6 +8,10 @@ var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/users')
 var meetingsRouter = require('./routes/meetings')
 
+require('dotenv').config()
+console.log(process.env.MONGODB_CONNECTION_STRING)
+require('./database-connection')
+
 var app = express()
 
 // view engine setup

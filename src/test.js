@@ -30,7 +30,7 @@ console.log("LET'SGO is a social network for people who love to travel and atten
 
 //create a user with axios
 async function main() {
-  await axios.post('/users', {
+  const sophia = await axios.post('/users', {
     name: 'Sophia',
     hacked: true,
   })
@@ -47,33 +47,32 @@ async function main() {
     name: 'Bob',
   })
 
-  await axios.post('/meetings', {
-    user: 'Sophia',
-    name: "Sophia's Meeting",
-    location: 'New York',
-    date: '2023-01-01',
-  })
+  // await axios.post('/meetings', {
+  //   user: sophia.data._id,
+  //   name: "Sophia's Meeting",
+  //   location: 'New York',
+  //   date: '2023-01-01',
+  // })
 
-  await axios.post('/meetings', {
-    user: 'John',
-    name: "John's Meeting",
-    location: 'Barcelona',
-    date: '2023-01-01',
-  })
+  // await axios.post('/meetings', {
+  //   user: 'John',
+  //   name: "John's Meeting",
+  //   location: 'Barcelona',
+  //   date: '2023-01-01',
+  // })
 
-  await axios.post("/meetings/Sophia's Meeting Meeting/attendees", {
-    name: 'John',
-  })
+  // await axios.post("/meetings/Sophia's Meeting Meeting/attendees", {
+  //   name: 'John',
+  // })
 
-  await axios.post("/meetings/John's Meeting Meeting/attendees", {
-    name: 'Sophia',
-  })
+  // await axios.post("/meetings/John's Meeting Meeting/attendees", {
+  //   name: 'Sophia',
+  // })
 
-  const allUsers = await axios.get('/users')
-  console.log('List of all users', allUsers.data)
+  // const allUsers = await axios.get('/users')
+  // console.log('List of all users', allUsers.data)
 
-  const allMeetings = await axios.get('/meetings')
-  // console.log('List of all meetings', allMeetings.data)
+  // const allMeetings = await axios.get('/meetings')
 }
 
 main()
