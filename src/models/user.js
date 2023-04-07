@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(autopopulate)
 
 class User {
-  async createMeeting(name, location, date) {
-    const meeting = await Meeting.create({ name, location, date, createdBy: this })
+  async createMeeting(name, location, date, limit) {
+    const meeting = await Meeting.create({ name, location, date, limit, createdBy: this })
 
     await this.joinMeeting(meeting)
 
@@ -25,6 +25,9 @@ class User {
   }
 
   async joinMeeting(meeting) {
+    if (meeting.attendees.length >= meeting.limit) {
+      throw new Error('Meeting is full')
+    }
     this.meetings.push(meeting)
     meeting.attendees.push(this)
 

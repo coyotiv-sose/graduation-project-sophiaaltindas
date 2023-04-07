@@ -12,22 +12,21 @@ router.get('/', function (req, res, next) {
 /* Create a new meeting */
 router.post('/', async function (req, res, next) {
   const user = await User.findById(req.body.user)
-  const meeting = await user.createMeeting(req.body.name, req.body.location, req.body.date)
+  const meeting = await user.createMeeting(req.body.name, req.body.location, req.body.date, req.body.limit)
 
-  res.send({ name: meeting.name, location: meeting.location, date: meeting.date })
+  res.send(meeting)
 })
 
 //create a new meeting for a user
-router.post('/:meetingID/attendees', function (req, res, next) {
-  if (req.query.view === 'json')
-    return res.send(
-      Meeting.list.map(meeting => ({
-        name: meeting.name,
-        location: meeting.location,
-        date: meeting.date,
-        attendees: meeting.attendees.map(attendee => attendee.name),
-      }))
-    )
+router.post('/:meetingID/attendees', async function (req, res, next) {
+  // if (req.query.view === 'json')
+  const user = await User.findById(req.body.user)
+  const meeting = await Meeting.findById(req.params.meetingID)
+  user.joinMeeting(meeting).catch(error => {
+    console.log(error.message)
+  })
+
+  return res.send()
 })
 
 module.exports = router
