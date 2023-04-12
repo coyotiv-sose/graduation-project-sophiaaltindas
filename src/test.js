@@ -2,7 +2,7 @@
 // const Meeting = require('./models/meeting')
 const axios = require('axios')
 
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'http://localhost:3000'
 
 console.log("LET'SGO is a social network for people who love to travel and attend events.")
 
