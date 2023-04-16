@@ -1,8 +1,12 @@
 // const User = require('./models/user')
 // const Meeting = require('./models/meeting')
 const axios = require('axios')
+const user = require('./models/user')
 
 axios.defaults.baseURL = 'http://localhost:3000'
+
+require('dotenv').config()
+require('./database-connection')
 
 console.log("LET'SGO is a social network for people who love to travel and attend events.")
 
@@ -30,6 +34,9 @@ console.log("LET'SGO is a social network for people who love to travel and atten
 
 //create a user with axios
 async function main() {
+  await User.deleteMany()
+  await Meeting.deleteMany()
+
   const sophia = await axios.post('/users', {
     name: 'Sophia',
   })
@@ -73,8 +80,8 @@ async function main() {
     user: sophia.data._id,
   })
 
-  // const allUsers = await axios.get('/users')
-  // console.log('List of all users', allUsers.data)
+  const allUsers = await axios.get('/users')
+  console.log('List of all users', allUsers.data)
 
   // const allMeetings = await axios.get('/meetings')
 }
