@@ -1,0 +1,28 @@
+services:
+  api:
+    image: letsgo-api
+    build: .
+    depends_on:
+      - mongodb
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app/src
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/letsgo
+
+  mongodb:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data:/data/db
+
+  tests:
+    image: letsgo-api
+    command: node src/test.js
+    build: .
+    depends_on:
+      - api
+    volumes:
+      - ./src/test.js:/app/src/test.js
