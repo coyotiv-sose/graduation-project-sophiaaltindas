@@ -5,8 +5,8 @@
   "description": "Node + PlantUML Starter Template",
   "license": "MIT",
   "scripts": {
-    "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "eslint:check": "npx eslint .",
     "eslint:fix": "npx eslint --fix .",
     "test": "DOTENV_CONFIG_PATH=./.env.test.local jest --detectOpenHandles --forceExit",
@@ -36,5 +36,13 @@
     "mongoose-autopopulate": "^1.0.0",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "setupFilesAfterEnv": [
+      "./tests/setup.js"
+    ]
   }
 }
