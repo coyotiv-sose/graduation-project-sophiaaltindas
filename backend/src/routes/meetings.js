@@ -5,9 +5,9 @@ var router = express.Router()
 
 /* GET meetings listing. */
 router.get('/', async function (req, res, next) {
-  //res.send(Meeting.list)
   const meetings = await Meeting.find()
-  res.render('meetings', { meetings })
+  res.send(meetings)
+  //res.render('meetings', { meetings })
 })
 
 /* Create a new meeting */

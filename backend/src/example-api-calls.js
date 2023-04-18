@@ -1,7 +1,8 @@
 // const User = require('./models/user')
 // const Meeting = require('./models/meeting')
 const axios = require('axios')
-const user = require('./models/user')
+const User = require('./models/user')
+const Meeting = require('./models/meeting')
 
 axios.defaults.baseURL = 'http://localhost:3000'
 
@@ -34,8 +35,8 @@ console.log("LET'SGO is a social network for people who love to travel and atten
 
 //create a user with axios
 async function main() {
-  await User.deleteMany()
   await Meeting.deleteMany()
+  await User.deleteMany()
 
   const sophia = await axios.post('/users', {
     name: 'Sophia',
