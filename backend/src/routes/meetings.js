@@ -10,6 +10,14 @@ router.get('/', async function (req, res, next) {
   //res.render('meetings', { meetings })
 })
 
+router.get('/:id', async function (req, res, next) {
+  const meeting = await Meeting.findById(req.params.id)
+
+  if (!meeting) return next({ status: 404, message: 'The meeting with the given ID was not found.' })
+
+  res.send(meeting)
+})
+
 /* Create a new meeting */
 router.post('/', async function (req, res, next) {
   const user = await User.findById(req.body.user)

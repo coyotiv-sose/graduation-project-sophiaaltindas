@@ -1,6 +1,7 @@
 const Meeting = require('./meeting')
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
+const passportLocalMongoose = require('passport-local-mongoose')
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -14,6 +15,7 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.plugin(autopopulate)
+userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 
 class User {
   async createMeeting(name, location, date, limit) {

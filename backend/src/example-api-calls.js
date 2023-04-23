@@ -40,19 +40,25 @@ async function main() {
 
   const sophia = await axios.post('/users', {
     name: 'Sophia',
+    email: 'sophia@gmail.com',
+    password: '654321',
   })
 
   const john = await axios.post('/users', {
     name: 'John',
+    email: 'john@gmail.com',
+    password: '65jk21',
   })
 
   const mary = await axios.post('/users', {
     name: 'Mary',
+    email: 'mary@gmail.com',
+    password: '65jk21',
   })
 
-  await axios.post('/users', {
-    name: 'Bob',
-  })
+  //   await axios.post('/users', {
+  //     name: 'Bob',
+  //   })
 
   const sophiasmeeting = await axios.post('/meetings', {
     user: sophia.data._id,
