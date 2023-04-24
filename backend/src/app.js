@@ -12,7 +12,7 @@ const mongoose = require('mongoose')
 var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/users')
 var meetingsRouter = require('./routes/meetings')
-var accountRouter = require('./routes/account')
+var accountsRouter = require('./routes/accounts')
 
 // requires the model with Passport-Local Mongoose plugged in
 const User = require('./models/user')
@@ -80,7 +80,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/meetings', meetingsRouter)
-app.use('/account', accountRouter)
+app.use('/accounts', accountsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

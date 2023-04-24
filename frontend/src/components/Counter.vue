@@ -1,8 +1,4 @@
 <script setup>
-import { ref } from 'vue'
-import { defineProps } from 'vue'
-import { useCounterStore } from '../stores/counter'
-
 defineProps({
   name: {
     type: String,

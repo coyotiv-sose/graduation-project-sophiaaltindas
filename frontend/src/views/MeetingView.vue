@@ -2,6 +2,8 @@
 import axios from 'axios'
 import CounterOptionsApi from '../components/CounterOptionsApi.vue'
 import User from '../components/User.vue'
+import { useAccountStore } from '../stores/account'
+import { mapActions } from 'pinia'
 
 export default {
   name: 'MeetingDetail',
@@ -19,6 +21,9 @@ export default {
       `http://localhost:3000/meetings/${this.$route.params.id}`
     )
     this.meeting = meeting
+  }
+  computed: {
+    ...mapState(useAccountStore, ['user'])
   }
 }
 </script>
