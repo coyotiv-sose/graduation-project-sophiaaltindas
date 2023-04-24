@@ -6,6 +6,7 @@ var logger = require('morgan')
 var cors = require('cors')
 var session = require('express-session')
 var MongoStore = require('connect-mongo')
+const passport = require('passport')
 
 const mongoose = require('mongoose')
 
@@ -16,7 +17,6 @@ var accountsRouter = require('./routes/accounts')
 
 // requires the model with Passport-Local Mongoose plugged in
 const User = require('./models/user')
-const passport = require('passport')
 
 // use static authenticate method of model in LocalStrategy
 passport.use(User.createStrategy())

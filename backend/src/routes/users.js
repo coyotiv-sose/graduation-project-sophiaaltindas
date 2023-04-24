@@ -21,7 +21,7 @@ router.post('/', async function (req, res, next) {
 
   const user = await User.register({ name, email }, password)
 
-  req.send(user)
+  res.send(user)
 })
 
 module.exports = router

@@ -12,6 +12,15 @@ export default {
     }
   },
   methods: {
+    // async login() {
+    //   const { data: user } = await axios.post('http://localhost:3000/accounts/session', {
+    //     email: this.email,
+    //     password: this.password
+    //   })
+    //   this.$store.user = user
+    //   this.$router.push('/')
+    // }
+
     ...mapActions(useAccountStore, ['login']),
     async doLogin() {
       await this.login(this.email, this.password)
