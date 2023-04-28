@@ -1,6 +1,4 @@
 <script setup>
-import Counter from './Counter.vue'
-
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
@@ -17,6 +15,4 @@ const { data: meetings } = await axios.get('/meetings')
       {{ meeting.name }} at {{ meeting.location }} on {{ meeting.date }}
     </li>
   </ul>
-  <Counter name="Counter" />
-  <Counter name="Counter 2" />
 </template>

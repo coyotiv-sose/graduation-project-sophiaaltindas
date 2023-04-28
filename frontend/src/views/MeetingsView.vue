@@ -3,8 +3,6 @@ import axios from 'axios'
 
 import { RouterLink } from 'vue-router'
 
-import Counter from '../components/Counter.vue'
-
 import CounterOptionsApi from '../components/CounterOptionsApi.vue'
 
 axios.defaults.withCredentials = true
