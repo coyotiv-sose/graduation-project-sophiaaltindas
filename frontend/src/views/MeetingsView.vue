@@ -7,7 +7,9 @@ import Counter from '../components/Counter.vue'
 
 import CounterOptionsApi from '../components/CounterOptionsApi.vue'
 
-const { data: meetings } = await axios.get('http://localhost:3000/meetings')
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
+
+const { data: meetings } = await axios.get('/meetings')
 </script>
 
 <template lang="pug">
