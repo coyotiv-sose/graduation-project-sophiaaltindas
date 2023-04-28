@@ -3,7 +3,11 @@ import Counter from './Counter.vue'
 
 import axios from 'axios'
 
-const { data: meetings } = await axios.get('http://127.0.0.1:3000/meetings')
+axios.defaults.withCredentials = true
+
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
+
+const { data: meetings } = await axios.get('/meetings')
 </script>
 
 <template>

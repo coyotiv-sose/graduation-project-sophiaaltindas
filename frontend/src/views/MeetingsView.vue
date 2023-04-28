@@ -7,6 +7,8 @@ import Counter from '../components/Counter.vue'
 
 import CounterOptionsApi from '../components/CounterOptionsApi.vue'
 
+axios.defaults.withCredentials = true
+
 axios.defaults.baseURL = import.meta.env.VITE_API_URL
 
 const { data: meetings } = await axios.get('/meetings')

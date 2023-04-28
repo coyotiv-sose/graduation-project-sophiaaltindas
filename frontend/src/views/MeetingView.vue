@@ -5,6 +5,10 @@ import User from '../components/User.vue'
 import { useAccountStore } from '../stores/account'
 import { mapActions } from 'pinia'
 
+axios.defaults.withCredentials = true
+
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
+
 export default {
   name: 'MeetingDetail',
   components: {
@@ -18,7 +22,7 @@ export default {
   },
   async created() {
     const { data: meeting } = await axios.get(
-      `http://localhost:3000/meetings/${this.$route.params.id}`
+      `/meetings/${this.$route.params.id}`
     )
     this.meeting = meeting
   }
