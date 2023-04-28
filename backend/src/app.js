@@ -100,7 +100,7 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 
-app.createSockerServer = function (server) {
+app.createSocketServer = function (server) {
   const io = require('socket.io')(server, {
     cors: {
       origin: true,
