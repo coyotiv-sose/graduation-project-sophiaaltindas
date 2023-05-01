@@ -35,13 +35,16 @@ h2 Log in to your account
 
 form(@submit.prevent="doLogin")
   div
-    label(for="email") Email:
-    input#email(v-model="email" type="text" required)
+    //- label(for="email") Email:
+    //- input#email(v-model="email" type="text" required)
+    b-form-input(id="input-1" v-model="email" type="email" placeholder="Enter email" required)
 
   div
-    label(for="password") Password:
-    input#password(v-model="password" type="password" required)
+    //- label(for="password") Password:
+    //- input#password(v-model="password" type="password" required)
+    b-form-input(id="input-2" v-model="password" type="password" placeholder="Enter password" required)
 
-    button(type="submit") Log in
+    //button(type="submit") Log in
+    b-button(variant="outline-primary" type="submit") Log in
 
 </template>
