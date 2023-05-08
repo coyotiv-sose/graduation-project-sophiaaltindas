@@ -7,6 +7,8 @@ var cors = require('cors')
 var session = require('express-session')
 var MongoStore = require('connect-mongo')
 const passport = require('passport')
+const helmet = require('helmet')
+const mongoSanitize = require('express-mongo-sanitize')
 
 const mongoose = require('mongoose')
 
@@ -30,6 +32,8 @@ console.log(process.env.MONGODB_CONNECTION_STRING)
 require('./database-connection')
 
 var app = express()
+app.use(helmet())
+
 app.set('trust proxy', 1)
 
 app.use(
@@ -78,7 +82,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-
+app.use(mongoSanitize())
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/meetings', meetingsRouter)

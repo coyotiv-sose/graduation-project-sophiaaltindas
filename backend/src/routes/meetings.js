@@ -1,6 +1,7 @@
 var express = require('express')
 const Meeting = require('../models/meeting')
 const User = require('../models/user')
+
 var router = express.Router()
 
 /* GET meetings listing. */

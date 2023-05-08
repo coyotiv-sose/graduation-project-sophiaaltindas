@@ -1,5 +1,6 @@
 var express = require('express')
 const User = require('../models/user')
+const { celebrate, Joi, errors, Segments } = require('celebrate')
 var router = express.Router()
 
 /* GET users listing. */
@@ -16,12 +17,22 @@ router.get('/', async function (req, res, next) {
 //   res.send(user)
 // })
 
-router.post('/', async function (req, res, next) {
-  const { name, email, password } = req.body
+router.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    }),
+  }),
+  async function (req, res, next) {
+    const { name, email, password } = req.body
 
-  const user = await User.register({ name, email }, password)
+    const user = await User.register({ name, email }, password)
 
-  res.send(user)
-})
+    res.send(user)
+  }
+)
 
 module.exports = router
