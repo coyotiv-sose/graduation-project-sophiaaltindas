@@ -31,7 +31,31 @@ export default {
 </script>
 
 <template>
-  <header>
+  <div>
+  <b-navbar fixed>
+    <b-navbar-nav>
+      <b-nav-item href="/">Home</b-nav-item>
+
+      <!-- Navbar dropdowns -->
+      <!-- <b-nav-item-dropdown text="Lang" right>
+        <b-dropdown-item href="#">EN</b-dropdown-item>
+        <b-dropdown-item href="#">ES</b-dropdown-item>
+        <b-dropdown-item href="#">RU</b-dropdown-item>
+        <b-dropdown-item href="#">FA</b-dropdown-item>
+      </b-nav-item-dropdown> -->
+
+      <b-nav-item-dropdown text="User" right>
+        <b-dropdown-item href="#">Account</b-dropdown-item>
+        <b-dropdown-item href="#">Settings</b-dropdown-item>
+        <b-dropdown-item href="/meetings">Meetings</b-dropdown-item>
+      </b-nav-item-dropdown>
+
+      <b-nav-item v-if="!user" href="/signup">Sign up</b-nav-item>
+      <b-nav-item v-if="user" @click="logout" href="/login">Log out</b-nav-item>
+    </b-navbar-nav>
+  </b-navbar>
+</div>
+  <!-- <header>
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -40,7 +64,7 @@ export default {
         <RouterLink v-if="user" @click="logout" to="/login">Log out</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
   <h1>Letsgo for {{ user?.name }}. Socket connected: {{ connected ? 'yes' : 'no' }}</h1>
   <p>{{ time }}</p>
   <Suspense>
@@ -66,15 +90,15 @@ nav {
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
+/* nav a.router-link-exact-active {
   color: var(--color-text);
-}
+} */
 
-nav a.router-link-exact-active:hover {
+/* nav a.router-link-exact-active:hover {
   background-color: transparent;
-}
+} */
 
-nav a {
+/* nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
@@ -82,7 +106,7 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
+} */
 
 @media (min-width: 1024px) {
   header {
