@@ -11,7 +11,7 @@ export const useAccountStore = defineStore('Account', {
   }),
   actions: {
     async fetchUser() {
-      // this.user = (await axios.get('/accounts/session')).data
+      this.user = (await axios.get('/accounts/session')).data
     },
     async login(email, password) {
       this.user = (

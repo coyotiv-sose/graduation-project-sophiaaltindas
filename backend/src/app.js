@@ -57,7 +57,8 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === 'production',
       maxAge: 1000 * 60 * 60 * 24 * 15, // 15 days
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : true,
+      sameSite: 'lax', //process.env.NODE_ENV === 'production' ? 'none' : true,
+      domain: process.env.NODE_ENV === 'production' ? '.herokuapp.com' : 'localhost',
     },
     store: MongoStore.create({ clientPromise, stringify: false }),
     // mongoUrl: process.env.MONGODB_CONNECTION_STRING,
