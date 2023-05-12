@@ -3,7 +3,7 @@ import axios from 'axios'
 import CounterOptionsApi from '../components/CounterOptionsApi.vue'
 import User from '../components/User.vue'
 import { useAccountStore } from '../stores/account'
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 
 axios.defaults.withCredentials = true
 
@@ -25,7 +25,7 @@ export default {
       `/meetings/${this.$route.params.id}`
     )
     this.meeting = meeting
-  }
+  },
   computed: {
     ...mapState(useAccountStore, ['user'])
   }

@@ -47,7 +47,7 @@ export default {
       <b-nav-item-dropdown text="User" right>
         <b-dropdown-item href="#">Account</b-dropdown-item>
         <b-dropdown-item href="#">Settings</b-dropdown-item>
-        <b-dropdown-item href="/meetings">Meetings</b-dropdown-item>
+        <b-dropdown-item href="/meetings"> My Meetings</b-dropdown-item>
       </b-nav-item-dropdown>
 
       <b-nav-item v-if="!user" href="/signup">Sign up</b-nav-item>
