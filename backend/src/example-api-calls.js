@@ -66,7 +66,6 @@ async function main() {
     name: "Sophia's Meeting",
     location: 'New York',
     date: '2023-01-01',
-    description: 'This is a meeting for Sophia',
   })
 
   const johnsmeeting = await axios.post('/meetings', {
@@ -74,7 +73,6 @@ async function main() {
     name: "John's Meeting",
     location: 'Barcelona',
     date: '2023-01-01',
-    description: 'This is a meeting for John',
   })
 
   await axios.post(`/meetings/${sophiasmeeting.data._id}/attendees`, {

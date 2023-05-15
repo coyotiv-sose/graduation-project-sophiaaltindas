@@ -22,13 +22,7 @@ router.get('/:id', async function (req, res, next) {
 /* Create a new meeting */
 router.post('/', async function (req, res, next) {
   const user = await User.findById(req.body.user)
-  const meeting = await user.createMeeting(
-    req.body.name,
-    req.body.location,
-    req.body.date,
-    req.body.limit,
-    req.body.description
-  )
+  const meeting = await user.createMeeting(req.body.name, req.body.location, req.body.date, req.body.limit)
 
   res.send(meeting)
 })

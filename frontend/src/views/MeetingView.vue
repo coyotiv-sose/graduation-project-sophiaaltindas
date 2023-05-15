@@ -40,7 +40,10 @@ div(v-else)
 
   h3 at {{meeting.location}} on {{meeting.date}}
 
+  h5 Description: {{ meeting.description }}
+
   p {{meeting.attendees.length}} people are attending:
+
 
   ul
     li(v-for="attendee in meeting.attendees" :key="attendee._id") {{ attendee.name }}
