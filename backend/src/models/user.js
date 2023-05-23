@@ -18,8 +18,8 @@ userSchema.plugin(autopopulate)
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 
 class User {
-  async createMeeting(name, location, date, limit) {
-    const meeting = await Meeting.create({ name, location, date, limit, createdBy: this })
+  async createMeeting(name, location, date, limit, description) {
+    const meeting = await Meeting.create({ name, location, date, limit, createdBy: this, description })
 
     await this.joinMeeting(meeting)
 

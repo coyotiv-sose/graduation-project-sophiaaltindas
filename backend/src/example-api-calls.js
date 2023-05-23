@@ -6,8 +6,8 @@ const Meeting = require('./models/meeting')
 
 axios.defaults.baseURL = 'http://localhost:3000'
 
-require('dotenv').config()
-require('./database-connection')
+// require('dotenv').config()
+// require('./database-connection')
 
 console.log("LET'SGO is a social network for people who love to travel and attend events.")
 
@@ -35,24 +35,24 @@ console.log("LET'SGO is a social network for people who love to travel and atten
 
 //create a user with axios
 async function main() {
-  await Meeting.deleteMany()
-  await User.deleteMany()
+  // await Meeting.deleteMany()
+  // await User.deleteMany()
 
   const sophia = await axios.post('/users', {
     name: 'Sophia',
-    email: 'sophia@gmail.com',
+    email: 'sophia456abc@gmail.com',
     password: '654321',
   })
 
   const john = await axios.post('/users', {
     name: 'John',
-    email: 'john@gmail.com',
+    email: 'john345abc@gmail.com',
     password: '65jk21',
   })
 
   const mary = await axios.post('/users', {
     name: 'Mary',
-    email: 'mary@gmail.com',
+    email: 'mary567abc@gmail.com',
     password: '65jk21',
   })
 
@@ -66,6 +66,7 @@ async function main() {
     name: "Sophia's Meeting",
     location: 'New York',
     date: '2023-01-01',
+    description: 'This is a meeting for Sophia',
   })
 
   const johnsmeeting = await axios.post('/meetings', {
@@ -73,6 +74,7 @@ async function main() {
     name: "John's Meeting",
     location: 'Barcelona',
     date: '2023-01-01',
+    description: 'This is a meeting for John',
   })
 
   await axios.post(`/meetings/${sophiasmeeting.data._id}/attendees`, {
@@ -87,8 +89,8 @@ async function main() {
     user: sophia.data._id,
   })
 
-  const allUsers = await axios.get('/users')
-  console.log('List of all users', allUsers.data)
+  //const allUsers = await axios.get('/users')
+  //console.log('List of all users', allUsers.data)
 
   // const allMeetings = await axios.get('/meetings')
 }
