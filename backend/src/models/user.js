@@ -30,6 +30,11 @@ class User {
     if (meeting.attendees.length >= meeting.limit) {
       throw new Error('Meeting is full')
     }
+    //check if user is already attending
+    if (meeting.attendees.includes(this)) {
+      throw new Error('User is already attending')
+    }
+
     this.meetings.push(meeting)
     meeting.attendees.push(this)
 

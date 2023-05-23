@@ -40,7 +40,7 @@ async function main() {
 
   const sophia = await axios.post('/users', {
     name: 'Sophia',
-    email: 'sophia456abc@gmail.com',
+    email: 'sophia@gmail.com',
     password: '654321',
   })
 
@@ -62,7 +62,7 @@ async function main() {
 
   const sophiasmeeting = await axios.post('/meetings', {
     user: sophia.data._id,
-    limit: 2,
+    limit: 5,
     name: "Sophia's Meeting",
     location: 'New York',
     date: '2023-01-01',

@@ -21,32 +21,40 @@ export default {
     }
   },
   async created() {
-    const { data: meeting } = await axios.get(
-      `/meetings/${this.$route.params.id}`
-    )
+    const { data: meeting } = await axios.get(`/meetings/${this.$route.params.id}`)
     this.meeting = meeting
   },
   computed: {
     ...mapState(useAccountStore, ['user'])
+  },
+  methods: {
+    async joinMeeting() {
+      await axios.post(`/meetings/${this.$route.params.id}/attendees`)
+      this.meeting = (await axios.get(`/meetings/${this.$route.params.id}`)).data
+    }
   }
 }
 </script>
 
-<template lang="pug">
-div(v-if="!meeting")
-  p Loading...
-div(v-else)
-  h2 Meeting {{meeting.name}}
+<template>
+  <div v-if="!meeting">
+    <p>Loading...</p>
+  </div>
+  <b-row v-else>
+    <b-col cols="4">
+      <div>
+        <h2>Meeting {{ meeting.name }}</h2>
+        <h3>at {{ meeting.location }} on {{ meeting.date }}</h3>
+        <h5>Description: {{ meeting.description }}</h5>
+        <p>{{ meeting.attendees.length }} people are attending:</p>
+        <ul>
+          <li v-for="attendee in meeting.attendees" :key="attendee._id">{{ attendee.name }}</li>
+        </ul>
+      </div>
+    </b-col>
 
-  h3 at {{meeting.location}} on {{meeting.date}}
-
-  h5 Description: {{ meeting.description }}
-
-  p {{meeting.attendees.length}} people are attending:
-
-
-  ul
-    li(v-for="attendee in meeting.attendees" :key="attendee._id") {{ attendee.name }}
-
-
+    <b-col cols="8">
+      <b-button pill variant="outline-info" @click="joinMeeting"> Join Meeting </b-button>
+    </b-col>
+  </b-row>
 </template>
