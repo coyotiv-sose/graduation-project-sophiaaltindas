@@ -2,6 +2,18 @@ var express = require('express')
 const User = require('../models/user')
 const { celebrate, Joi, errors, Segments } = require('celebrate')
 var router = express.Router()
+const multer = require('multer')
+
+const avatarStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `${__dirname}/../uploads/avatar`)
+  },
+  filename: (req, file, cb) => {
+    cb(null, `avatar-${Date.now()}-${file.originalname.replace(/[^a-zA-Z\.]/g, '')}`)
+  },
+})
+
+const upload = multer({ storage: avatarStorage })
 
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
@@ -34,5 +46,15 @@ router.post(
     res.send(user)
   }
 )
+
+router.post('/profile', upload.single('avatar'), async function (req, res) {
+  console.log('FILE', req.file)
+
+  const url = `/avatar/${req.file.filename}`
+
+  await req.user.updateAvatar(url)
+
+  res.send({ message: 'success' })
+})
 
 module.exports = router

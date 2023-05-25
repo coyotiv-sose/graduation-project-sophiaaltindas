@@ -76,9 +76,9 @@ Button(@click="show=true" variant="primary") Create new Meeting
       <li v-for="meeting in meetings" :key="meeting._id">
         <b-row>
           <b-col cols="4">
-            <router-link :to="`/meetings/${meeting._id}`"
+            <router :to="`/meetings/${meeting._id}`"
               >{{ meeting.name }} at {{ meeting.location }} on {{ meeting.date }}
-            </router-link>
+            </router>
           </b-col>
           <b-col cols="8">
             <b-button pill variant="outline-info" @click="showdetails(`${meeting._id}`)"
@@ -102,13 +102,12 @@ Button(@click="show=true" variant="primary") Create new Meeting
       <b-row class="mb-1">
         <b-col cols="4">Select Location</b-col>
         <b-col>
-          <b-form-select>
+          <b-form-select v-model="selectedCountry">
             <b-form-select-option
               v-for="country in location"
               :key="country.isoCode"
               :value="country.name"
               :text="country.name"
-              v-model="selectedCountry"
             ></b-form-select-option>
           </b-form-select>
         </b-col>

@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
       autopopulate: { maxDepth: 1 },
     },
   ],
+  avatarUrl: String,
 })
 
 userSchema.plugin(autopopulate)
@@ -57,6 +58,11 @@ class User {
     }
 
     this.meetings = this.meetings.filter(m => !m._id.equals(meeting._id))
+    await this.save()
+  }
+
+  async updateAvatar(url) {
+    this.avatarUrl = url
     await this.save()
   }
 
