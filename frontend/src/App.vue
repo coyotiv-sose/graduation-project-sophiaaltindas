@@ -32,46 +32,35 @@ export default {
 
 <template>
   <div>
-    <b-navbar fixed>
+    <!-- <b-navbar fixed>
       <b-navbar-nav>
         <b-nav-item href="/">Home</b-nav-item>
-
-        <!-- Navbar dropdowns -->
-        <!-- <b-nav-item-dropdown text="Lang" right>
-        <b-dropdown-item href="#">EN</b-dropdown-item>
-        <b-dropdown-item href="#">ES</b-dropdown-item>
-        <b-dropdown-item href="#">RU</b-dropdown-item>
-        <b-dropdown-item href="#">FA</b-dropdown-item>
-      </b-nav-item-dropdown> -->
 
         <b-nav-item-dropdown text="User" right>
           <b-dropdown-item href="/account">Account</b-dropdown-item>
           <b-dropdown-item href="#">Settings</b-dropdown-item>
-          <b-dropdown-item href="/meetings"> My Meetings</b-dropdown-item>
+          <b-dropdown-item href="/mymeetings"> My Meetings</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item v-if="!user" href="/signup">Sign up</b-nav-item>
         <b-nav-item v-if="user" @click="logout" href="/login">Log out</b-nav-item>
       </b-navbar-nav>
-    </b-navbar>
+    </b-navbar> -->
 
     <div>
-      <b-navbar type="dark" variant="dark">
+      <b-navbar type="dark" variant="white">
         <b-navbar-nav>
-          <b-nav-item href="#">Home</b-nav-item>
+          <b-nav-item href="/">Home</b-nav-item>
 
           <!-- Navbar dropdowns -->
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
+          <b-nav-item-dropdown text="User" right>
+            <b-dropdown-item href="/account">Account</b-dropdown-item>
+            <b-dropdown-item href="#">Settings</b-dropdown-item>
+            <b-dropdown-item href="/mymeetings"> My Meetings</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown text="User" right>
-            <b-dropdown-item href="#">Account</b-dropdown-item>
-            <b-dropdown-item href="#">Settings</b-dropdown-item>
-          </b-nav-item-dropdown>
+          <b-nav-item v-if="!user" href="/signup">Sign up</b-nav-item>
+          <b-nav-item v-if="user" @click="logout" href="/login">Log out</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
     </div>

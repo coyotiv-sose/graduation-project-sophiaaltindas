@@ -33,18 +33,23 @@ export default {
   <aside class="profile-card">
     <header>
       <!-- here’s the avatar -->
-      <a v-if="user" href="http://ali.shahab.pk">
-        <img crossorigin="anonymous" :src="'http://localhost:3000' + user.avatarUrl" />
+      <a v-if="user">
+        <img
+          crossorigin="anonymous"
+          width="300"
+          height="300"
+          :src="'http://localhost:3000' + user.avatarUrl"
+        />
       </a>
 
       <!-- the username -->
-      <h1>Ali Shahab</h1>
+      <h1>{{ user.name }}</h1>
 
       <!-- and role or location -->
-      <h2>Another Web Designer</h2>
+      <h2>Another Traveler</h2>
     </header>
     <input type="file" accept="image/*" @change="uploadImage($event)" id="file-input" />
-    <button type="button" @click="updateProfile">Update Profile</button>
+    <b-button type="button" @click="updateProfile">Update Profile</b-button>
     <!-- bit of a bio; who are you? -->
     <div class="profile-bio">
       <p>
@@ -57,22 +62,22 @@ export default {
     <ul class="profile-social-links">
       <!-- twitter - el clásico  -->
       <li>
-        <a href="https://twitter.com/alishahab">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-twitter.svg" />
+        <a>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-twitter.svg"
+            width="100"
+            height="100"
+          />
         </a>
       </li>
 
-      <!-- envato – use this one to link to your marketplace profile -->
       <li>
-        <a href="http://themeforest.net/user/alishahab">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-envato.svg" />
-        </a>
-      </li>
-
-      <!-- codepen - your codepen profile-->
-      <li>
-        <a href="https://codepen.io/alishahab">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-codepen.svg" />
+        <a>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+            width="100"
+            height="100"
+          />
         </a>
       </li>
 

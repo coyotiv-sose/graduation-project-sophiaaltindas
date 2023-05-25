@@ -74,7 +74,11 @@ router.delete('/:meetingID/attendees', async function (req, res, next) {
 
 router.delete('/:meetingID', async function (req, res, next) {
   const meeting = await Meeting.findById(req.params.meetingID)
-
+  if (!meeting) return next({ status: 404, message: 'The meeting with the given ID was not found.' })
+  if (!req.user._id.equals(meeting.createdBy._id)) {
+    return next({ status: 403, message: 'User did not create this meeting' })
+  }
+  await Meeting.deleteOne({ _id: req.params.meetingID })
   req.user
     .deleteMeeting(meeting)
     .then(data => {
