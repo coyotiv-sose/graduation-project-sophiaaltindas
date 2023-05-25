@@ -38,11 +38,51 @@ router.post('/:meetingID/attendees', async function (req, res, next) {
   // if (req.query.view === 'json')
   //const user = await User.findById(req.body.user)
   const meeting = await Meeting.findById(req.params.meetingID)
-  req.user.joinMeeting(meeting).catch(error => {
-    console.log(error.message)
-  })
 
-  return res.send()
+  // Path 1
+  req.user
+    .joinMeeting(meeting)
+    .then(data => {
+      res.send()
+    })
+    .catch(error => {
+      res.status(400).send(error.message)
+    })
+
+  // Path 2
+  // try {
+  //   await req.user.joinMeeting(meeting)
+  //   res.send()
+  // } catch (error) {
+  //   res.status(400).send(error.message)
+  // }
+})
+
+//leave a meeting
+router.delete('/:meetingID/attendees', async function (req, res, next) {
+  const meeting = await Meeting.findById(req.params.meetingID)
+
+  req.user
+    .leaveMeeting(meeting)
+    .then(data => {
+      res.send()
+    })
+    .catch(error => {
+      res.status(400).send(error.message)
+    })
+})
+
+router.delete('/:meetingID', async function (req, res, next) {
+  const meeting = await Meeting.findById(req.params.meetingID)
+
+  req.user
+    .deleteMeeting(meeting)
+    .then(data => {
+      res.send()
+    })
+    .catch(error => {
+      res.status(400).send(error.message)
+    })
 })
 
 module.exports = router

@@ -19,6 +19,7 @@ var accountsRouter = require('./routes/accounts')
 
 // requires the model with Passport-Local Mongoose plugged in
 const User = require('./models/user')
+const Meeting = require('./models/meeting')
 
 // use static authenticate method of model in LocalStrategy
 passport.use(User.createStrategy())
@@ -73,7 +74,7 @@ app.use((req, res, next) => {
   req.session.history = req.session.history || []
   req.session.history.push({ url: req.url, ip: req.ip })
 
-  console.log('session', req.session)
+  // console.log('session', req.session)
 
   next()
 })
@@ -88,6 +89,11 @@ app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/meetings', meetingsRouter)
 app.use('/accounts', accountsRouter)
+app.use('/delete-all', async (req, res) => {
+  await User.deleteMany({})
+  await Meeting.deleteMany({})
+  res.send('ok')
+})
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -30,8 +30,9 @@ class User {
     if (meeting.attendees.length >= meeting.limit) {
       throw new Error('Meeting is full')
     }
+    const existingUser = meeting.attendees.find(attendee => attendee._id.equals(this._id))
     //check if user is already attending
-    if (meeting.attendees.includes(this)) {
+    if (existingUser) {
       throw new Error('User is already attending')
     }
 
@@ -42,15 +43,21 @@ class User {
     await this.save()
   }
 
-  leaveMeeting(meeting) {
-    this.meetings = this.meetings.filter(e => e !== meeting)
-    meeting.attendees = meeting.attendees.filter(attendee => attendee !== this)
+  async leaveMeeting(meeting) {
+    this.meetings = this.meetings.filter(m => !m._id.equals(meeting._id))
+    meeting.attendees = meeting.attendees.filter(attendee => !attendee._id.equals(this._id))
+
+    await meeting.save()
+    await this.save()
   }
 
-  deleteMeeting(meeting) {
-    if (this === meeting.createdBy) {
-      this.meetings = this.meetings.filter(e => e !== meeting)
+  async deleteMeeting(meeting) {
+    if (!this._id.equals(meeting.createdBy._id)) {
+      throw new Error('User did not create this meeting')
     }
+
+    this.meetings = this.meetings.filter(m => !m._id.equals(meeting._id))
+    await this.save()
   }
 
   // changeMeetingName(meeting, newName) {

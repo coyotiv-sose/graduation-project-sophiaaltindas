@@ -17,27 +17,43 @@ export default {
   },
   data() {
     return {
+      loading: false,
       meeting: null
     }
   },
   async created() {
-    const { data: meeting } = await axios.get(`/meetings/${this.$route.params.id}`)
-    this.meeting = meeting
+    await this.fetchMeeting()
   },
   computed: {
-    ...mapState(useAccountStore, ['user'])
+    ...mapState(useAccountStore, ['user']),
+    attendeeIds() {
+      return this.meeting.attendees.map((attendee) => attendee._id)
+    }
   },
   methods: {
+    async fetchMeeting() {
+      this.loading = true
+      this.meeting = (await axios.get(`/meetings/${this.$route.params.id}`)).data
+      this.loading = false
+    },
     async joinMeeting() {
       await axios.post(`/meetings/${this.$route.params.id}/attendees`)
-      this.meeting = (await axios.get(`/meetings/${this.$route.params.id}`)).data
+      await this.fetchMeeting()
+    },
+    async leaveMeeting() {
+      await axios.delete(`/meetings/${this.$route.params.id}/attendees`)
+      await this.fetchMeeting()
+    },
+    async deleteMeeting() {
+      await axios.delete(`/meetings/${this.$route.params.id}`)
+      this.$router.push('/')
     }
   }
 }
 </script>
 
 <template>
-  <div v-if="!meeting">
+  <div v-if="loading">
     <p>Loading...</p>
   </div>
   <b-row v-else>
@@ -54,7 +70,24 @@ export default {
     </b-col>
 
     <b-col cols="8">
-      <b-button pill variant="outline-info" @click="joinMeeting"> Join Meeting </b-button>
+      <b-button
+        v-if="attendeeIds.includes(user._id)"
+        pill
+        variant="outline-info"
+        @click="leaveMeeting"
+      >
+        Leave Meeting
+      </b-button>
+      <b-button v-else pill variant="outline-info" @click="joinMeeting">Join Meeting</b-button>
+
+      <b-button
+        v-if="meeting.createdBy._id == user._id"
+        pill
+        variant="outline-danger"
+        @click="deleteMeeting"
+        style="margin-left: 10px"
+        >Delete Meeting</b-button
+      >
     </b-col>
   </b-row>
 </template>

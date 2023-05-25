@@ -2,6 +2,9 @@
 import axios from 'axios'
 import { mapActions } from 'pinia'
 
+axios.defaults.withCredentials = true
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
+
 export default {
   name: 'SignupView',
   data() {
@@ -13,7 +16,7 @@ export default {
   },
   methods: {
     async doSignup() {
-      await axios.post('http://localhost:3000/users', {
+      await axios.post('/users', {
         name: this.name,
         email: this.email,
         password: this.password

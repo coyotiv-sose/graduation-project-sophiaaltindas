@@ -1,8 +1,8 @@
 // const User = require('./models/user')
 // const Meeting = require('./models/meeting')
 const axios = require('axios')
-const User = require('./models/user')
-const Meeting = require('./models/meeting')
+// const User = require('./models/user')
+// const Meeting = require('./models/meeting')
 
 axios.defaults.baseURL = 'http://localhost:3000'
 
@@ -38,6 +38,8 @@ async function main() {
   // await Meeting.deleteMany()
   // await User.deleteMany()
 
+  await axios.post('/delete-all')
+
   const sophia = await axios.post('/users', {
     name: 'Sophia',
     email: 'sophia@gmail.com',
@@ -60,34 +62,93 @@ async function main() {
   //     name: 'Bob',
   //   })
 
-  const sophiasmeeting = await axios.post('/meetings', {
-    user: sophia.data._id,
-    limit: 5,
-    name: "Sophia's Meeting",
-    location: 'New York',
-    date: '2023-01-01',
-    description: 'This is a meeting for Sophia',
+  let cookie = ''
+
+  let response = await axios.post('/accounts/session', {
+    email: 'sophia@gmail.com',
+    password: '654321',
   })
 
-  const johnsmeeting = await axios.post('/meetings', {
-    user: john.data._id,
-    name: "John's Meeting",
-    location: 'Barcelona',
-    date: '2023-01-01',
-    description: 'This is a meeting for John',
+  cookie = response.headers['set-cookie'][0]
+
+  const sophiasmeeting = await axios.post(
+    '/meetings',
+    {
+      limit: 5,
+      name: "Sophia's Meeting",
+      location: 'New York',
+      date: '2023-01-01',
+      description: 'This is a meeting for Sophia',
+    },
+    {
+      headers: {
+        Cookie: cookie,
+      },
+    }
+  )
+
+  await axios.delete('/accounts/session')
+
+  response = await axios.post('/accounts/session', {
+    email: 'john345abc@gmail.com',
+    password: '65jk21',
   })
 
-  await axios.post(`/meetings/${sophiasmeeting.data._id}/attendees`, {
-    user: john.data._id,
+  cookie = response.headers['set-cookie'][0]
+
+  const johnsmeeting = await axios.post(
+    '/meetings',
+    {
+      name: "John's Meeting",
+      location: 'Barcelona',
+      date: '2023-01-01',
+      description: 'This is a meeting for John',
+    },
+    {
+      headers: {
+        Cookie: cookie,
+      },
+    }
+  )
+
+  await axios.post(
+    `/meetings/${sophiasmeeting.data._id}/attendees`,
+    {},
+    {
+      headers: {
+        Cookie: cookie,
+      },
+    }
+  )
+
+  await axios.delete('/accounts/session')
+
+  response = await axios.post('/accounts/session', {
+    email: 'mary567abc@gmail.com',
+    password: '65jk21',
   })
 
-  await axios.post(`/meetings/${sophiasmeeting.data._id}/attendees`, {
-    user: mary.data._id,
-  })
+  cookie = response.headers['set-cookie'][0]
 
-  await axios.post(`/meetings/${johnsmeeting.data._id}/attendees`, {
-    user: sophia.data._id,
-  })
+  await axios.post(
+    `/meetings/${sophiasmeeting.data._id}/attendees`,
+    {},
+    {
+      headers: {
+        Cookie: cookie,
+      },
+    }
+  )
+
+  await axios.post(
+    `/meetings/${johnsmeeting.data._id}/attendees`,
+    {},
+    {
+      headers: {
+        Cookie: cookie,
+      },
+    }
+  )
 
   //const allUsers = await axios.get('/users')
   //console.log('List of all users', allUsers.data)
@@ -96,6 +157,8 @@ async function main() {
 }
 
 main()
+  .then(data => console.log('success'))
+  .catch(error => console.error('error occured'))
 
 // const sophia = new User('Sophia')
 // const john = new User('John')
