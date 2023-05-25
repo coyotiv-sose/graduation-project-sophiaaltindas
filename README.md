@@ -1,85 +1,31 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-f4981d0f882b2a3f0472912d15f9806d57e124e0fc890972558857b51b24a6f9.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=10554015)
-# Coyotiv School of Software Engineering
 
-## Node & PlantUML Starter Template
+# Letsgo - Social Network for Solo Travelers
 
----
+Letsgo is a social network website designed specifically for solo travelers who want to connect with other like-minded individuals while exploring new destinations. This platform enables users to create and join meetings and activities, allowing them to arrange group events and share memorable experiences together. Whether you're looking to book a boat tour, go on a hiking adventure, or simply explore a new city with fellow travelers, Letsgo has got you covered.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+##Features
+User Registration and Authentication: Users can create an account and log in to the platform, allowing them to access all the features and functionalities.
 
-Now you can directly work in your browser!
+Create Meetings: Users can create meetings by specifying the city, date, and other relevant details of the event. They can also set a maximum limit for the number of attendees.
 
-## Getting started
+Browse and Join Meetings: Users can browse through the latest created meetings and join the ones that interest them. They can view meeting details, such as location, date, and number of attendees, to make an informed decision.
 
-### Node / JS
+User Profiles: Each user has a profile that displays their basic information, including their profile picture, bio, and a list of meetings they have created or joined.
 
-> **Note:**
->
-> - _There is an **index.js** file located under the \*\*\_src_\*\* folder\_
-> - _The **index.js** file, it's already linked with the debugger in your **launch.json**_
+##Technologies Used
+Letsgo is built using the following technologies:
 
-To run the **index.js** file:
+Front-end: HTML, CSS, JavaScript, Vue.js
+Back-end: Node.js, Express.js
+Database: MongoDB, Express Mongoose Sanitize
+Authentication: express-session
+Real-time Communication: Socket.IO
 
-- with **_node_**, copy and enter one of the following commands on your terminal:
+##License
+This project is licensed under the MIT License. See the LICENSE file for more information.
 
-  ```sh
-  npm start
-  ```
+##Contact
+If you have any questions, suggestions, or feedback, please open an issue or submit a pull request on the GitHub repository.
 
-  or:
-
-  ```sh
-  node src/index.js
-  ```
-
-- in development mode that restarts every time you save a file:
-
-  ```sh
-  npm run dev
-  ```
-
-### PlantUML
-
-> **Note:**
->
-> - There is a **class.puml** example file located in the **_architecture_** folder.
-
-To start working **_\*.puml_** files:
-
-- You can continue by editing the **class.puml** file
-- Add additional **_\*.puml_** files on that folder too.
-
-If you what to visualize a preview of the **class.puml** file or another **_\*.puml_** file on the project, please select the file and on your keyboard press the following keys:
-
-- _MacOS_: **Option + D**
-
-- _Linux/Windows_: **Alt + D**
-  The above commands will automatically open your a window and will show you live any updates that you make on the file.
-
----
-
-_Now that we are ready, let's have some coding fun!_
-
----
-
-## MIT License
-
-Copyright (c) 2022 Coyotiv
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Happy traveling with Letsgo!
